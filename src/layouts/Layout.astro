@@ -1,0 +1,52 @@
+---
+// Layout commun à toutes les pages : <head>, navigation et pied de page.
+import '../styles/global.css';
+import Modal from '../components/Modal';
+
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<html lang="fr">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+	</head>
+	<body class="min-h-screen bg-white text-gray-900">
+		<header>
+			<nav class="mx-auto flex max-w-4xl gap-6 p-4">
+				<a href="/">Mon portfolio</a>
+				<a href="/projets">Projets</a>
+			</nav>
+		</header>
+
+		<main class="mx-auto max-w-4xl p-4">
+			<!-- Slot est un espace destiné à recevoir le contenu du tag <Layout> -->
+			<slot />
+		</main>
+
+		<footer class="mx-auto max-w-4xl">
+			<!-- Modale en JavaScript natif : on utilise la balise <dialog> du navigateur -->
+			<button id="open-modal">Démo javascript</button>
+			<dialog id="modal" class="m-auto p-6 backdrop:bg-black/50">
+				<p>Bonjour depuis JavaScript !</p>
+				<button id="close-modal">Fermer</button>
+			</dialog>
+
+			<!-- Modale en React : client:load envoie le JS du composant au navigateur et non à Astro -->
+			<Modal client:load />
+		</footer>
+
+		<script>
+			const modal = document.querySelector('#modal') as HTMLDialogElement;
+			document.querySelector('#open-modal')?.addEventListener('click', () => modal.showModal());
+			document.querySelector('#close-modal')?.addEventListener('click', () => modal.close());
+		</script>
+	</body>
+</html>

@@ -1,0 +1,23 @@
+[
+    {
+        "slug": "projet-1",
+        "name": "Projet 1",
+        "description": "Courte description du premier projet.",
+        "image": "https://placehold.co/600x400?text=Projet+1",
+        "technologies": ["HTML", "CSS"]
+    },
+    {
+        "slug": "projet-2",
+        "name": "Projet 2",
+        "description": "Courte description du deuxième projet.",
+        "image": "https://placehold.co/600x400?text=Projet+2",
+        "technologies": ["JavaScript"]
+    },
+    {
+        "slug": "projet-3",
+        "name": "Projet 3",
+        "description": "Courte description du troisième projet.",
+        "image": "https://placehold.co/600x400?text=Projet+3",
+        "technologies": ["PHP", "MySQL"]
+    }
+]

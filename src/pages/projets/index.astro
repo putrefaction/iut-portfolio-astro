@@ -1,0 +1,20 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import projects from '../../database/projects.json';
+---
+
+<Layout title="Projets - Mon portfolio">
+	<h1>Mes projets</h1>
+
+	<ul class="grid gap-4 sm:grid-cols-3">
+		{projects.map((project) => (
+			<li>
+				<a href={`/projets/${project.slug}`}>
+					<img src={project.image} alt={project.name} />
+					<h2>{project.name}</h2>
+					<p>{project.description}</p>
+				</a>
+			</li>
+		))}
+	</ul>
+</Layout>

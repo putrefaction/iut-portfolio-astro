@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+
+a {
+    color: blue;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+button {
+    @apply p-1 m-1 border-1
+}

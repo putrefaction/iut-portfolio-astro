@@ -1,43 +1,57 @@
-# Astro Starter Kit: Minimal
+# Portfolio - base de départ (Astro + Tailwind)
+
+## Installation
 
 ```sh
-npm create astro@latest -- --template minimal
+npm install
+npm run dev
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Le site est alors disponible sur http://localhost:4321
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
+## Structure
 
 ```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+src/
+├── database/
+│   └── projects.json        # Les données de vos projets
+├── layouts/
+│   └── Layout.astro         # Structure commune (head, nav, footer)
+├── pages/
+│   ├── index.astro          # Page d'accueil            → /
+│   └── projets/
+│       ├── index.astro      # Liste des projets         → /projets
+│       └── [slug].astro     # Page d'un projet          → /projets/projet-1
+└── styles/
+    └── global.css           # Import de Tailwind
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Ajouter un projet
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+Ajoutez un objet dans `src/database/projects.json`. Le champ `slug` sert à construire
+l'URL de la page du projet : il doit être unique, en minuscules, sans espaces ni accents.
 
-Any static assets, like images, can be placed in the `public/` directory.
+```json
+{
+    "slug": "mon-nouveau-projet",
+    "name": "Mon nouveau projet",
+    "description": "Description du projet.",
+    "image": "https://placehold.co/600x400",
+    "technologies": ["Astro", "Tailwind"]
+}
+```
 
-## 🧞 Commands
+La page `/projets/mon-nouveau-projet` est générée automatiquement.
 
-All commands are run from the root of the project, from a terminal:
+## Commandes
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+| Commande          | Action                                    |
+| :---------------- | :---------------------------------------- |
+| `npm run dev`     | Lance le serveur de développement         |
+| `npm run build`   | Génère le site final dans `./dist/`       |
+| `npm run preview` | Prévisualise le site généré               |
 
-## 👀 Want to learn more?
+## Documentation
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- Astro : https://docs.astro.build
+- Tailwind CSS : https://tailwindcss.com/docs

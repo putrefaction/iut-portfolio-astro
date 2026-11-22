@@ -1,0 +1,33 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import projects from '../../database/projects.json';
+
+// Le template étant dans pages/projets/[slug].astro , il faut communiquer à astro toutes les pages qui peuvent exister.
+// On génère une page par projet, à partir de son "slug" (ex : /projets/projet-1).
+export function getStaticPaths() {
+	return projects.map((project) => ({
+		params: { slug: project.slug },
+		// project sera transmis dans les props de la page
+		props: { project },
+	}));
+}
+
+// ici on récupère les props transmises (en l'occurence, project)
+const { project } = Astro.props;
+---
+
+<Layout title={project.name}>
+	<a href="/projets"> &lt; Retour aux projets</a>
+
+	<h1>{project.name}</h1>
+
+	<img src={project.image} />
+
+	<p>{project.description}</p>
+
+	<ul>
+		{project.technologies.map((techno) => (
+			<li class="text-sm">{techno}</li>
+		))}
+	</ul>
+</Layout>
